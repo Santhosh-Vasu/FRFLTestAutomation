@@ -7,11 +7,13 @@ using FRFLTestFramework.Driver;
 namespace FRFLUIApplicationTest.StepDefinitions
 {
     [Binding]
-    public  class HPLoanApplicationStepDefinitions
+    public class HPLoanApplicationStepDefinitions
     {
         private readonly TestSettings _testsettings;
         //private readonly IScenarioContext _scenariocontext;
         private readonly IDriverFixture _driverfixture;
+
+        private ApplicationHomePage _applicationHomePage;
         public HPLoanApplicationStepDefinitions(TestSettings testsettings, IDriverFixture driverFixture)
         {
             //_scenariocontext = scenariocontext;
@@ -19,25 +21,22 @@ namespace FRFLUIApplicationTest.StepDefinitions
             _driverfixture = driverFixture;
         }
 
-
         [Given(@"the user on the FRFL Website")]
         public async Task GivenTheUserOnTheFRFLWebsite()
         {
-           var page = await _driverfixture.GetPageAsync();
-           var applicationHomePage = new ApplicationHomePage(page);
-           await applicationHomePage.appApplyNowBtn();
-           await applicationHomePage.acceptAll();
-           await applicationHomePage.acceptAndProceed();
-           await applicationHomePage.appNextBtn();
+            var page = await _driverfixture.GetPageAsync();
+            _applicationHomePage = new ApplicationHomePage(page);
+            await _applicationHomePage.appApplyNowBtn();
+            await _applicationHomePage.acceptAll();
+            await _applicationHomePage.acceptAndProceed();
+            await _applicationHomePage.appNextBtn();
 
         }
 
         [When(@"the user fills the main applicant details (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)")]
         public async Task WhenTheUserFillsTheMainApplicantDetailsAsync(string title, string forename, string middlename, string surname, string dobDay, string dobMonth, string dobYear, string status, string dependants, string hometel, string mobiletel, string email)
         {
-        //    await _applicationHomePage.FillMainApplicant(title, forename, middlename, surname, dobDay, dobMonth, dobYear, status, dependants, hometel, mobiletel, email);
-         
-              
+            await _applicationHomePage.FillMainApplicant(title, forename, middlename, surname, dobDay, dobMonth, dobYear, status, dependants, hometel, mobiletel, email);
         }
 
         //[When(@"the address (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)")]

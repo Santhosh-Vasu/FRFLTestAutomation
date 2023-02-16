@@ -1,3 +1,4 @@
+using FRFLApplicationTest._pages;
 using FRFLApplicationTest.Pages;
 using FRFLTestFramework.Config;
 using FRFLTestFramework.Driver;
@@ -11,12 +12,10 @@ namespace FRFLUIApplicationTest.StepDefinitions
         private readonly TestSettings _testsettings;
         //private readonly IScenarioContext _scenariocontext;
         private readonly IDriverFixture _driverfixture;
-        private readonly IApplicationHomePage _applicationHomePage;
-        public HPLoanApplicationStepDefinitions(TestSettings testsettings, IDriverFixture driverFixture, IApplicationHomePage applicationHomePage)
+        public HPLoanApplicationStepDefinitions(TestSettings testsettings, IDriverFixture driverFixture)
         {
             //_scenariocontext = scenariocontext;
             _testsettings = testsettings;
-            _applicationHomePage = applicationHomePage;
             _driverfixture = driverFixture;
         }
 
@@ -24,18 +23,19 @@ namespace FRFLUIApplicationTest.StepDefinitions
         [Given(@"the user on the FRFL Website")]
         public async Task GivenTheUserOnTheFRFLWebsite()
         {
-           await _driverfixture.Page.GotoAsync(_testsettings.ApplicationUrlUat);
-             await _applicationHomePage.appApplyNowBtn();
-            await _applicationHomePage.acceptAll();
-            await _applicationHomePage.acceptAndProceed();
-            await _applicationHomePage.appNextBtn();
+           var page = await _driverfixture.GetPageAsync();
+           var applicationHomePage = new ApplicationHomePage(page);
+           await applicationHomePage.appApplyNowBtn();
+           await applicationHomePage.acceptAll();
+           await applicationHomePage.acceptAndProceed();
+           await applicationHomePage.appNextBtn();
 
         }
 
         [When(@"the user fills the main applicant details (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)")]
         public async Task WhenTheUserFillsTheMainApplicantDetailsAsync(string title, string forename, string middlename, string surname, string dobDay, string dobMonth, string dobYear, string status, string dependants, string hometel, string mobiletel, string email)
         {
-            await _applicationHomePage.FillMainApplicant(title, forename, middlename, surname, dobDay, dobMonth, dobYear, status, dependants, hometel, mobiletel, email);
+        //    await _applicationHomePage.FillMainApplicant(title, forename, middlename, surname, dobDay, dobMonth, dobYear, status, dependants, hometel, mobiletel, email);
          
               
         }

@@ -10,29 +10,14 @@ namespace FRFLTestFramework.Driver
     {
         private readonly TestSettings _testsettings;
         public IBrowser? _browser;
-        private readonly Task<IPage> _page;
+        private readonly IPage _page;
 
         public DriverFixture(TestSettings testsettings)
         {
             _testsettings = testsettings;
-            _page = GetPage();
-            //string url1 = _testsettings.ApplicationUrlUat;
-           // Page.GotoAsync(_testsettings.ApplicationUrlUat);
-            
-            
-            //NavigateToWebsite();
         }
-        
 
-        public IPage Page => _page.Result;
-
-        //public async Task NavigateToWebsite()
-        //{
-        //    await Page.GotoAsync(_testsettings.ApplicationUrlUat);
-
-        //}
-
-        private async Task<IPage> GetPage()
+        public async Task<IPage> GetPageAsync()
         {
             if (_testsettings.BrowserType == BrowserType.Chromium)
             {
@@ -42,7 +27,7 @@ namespace FRFLTestFramework.Driver
                 _browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
                 {
                     Headless = false
-                });
+                }).ConfigureAwait(false);
                 //Creating a blank page
                 return await _browser.NewPageAsync();
             }

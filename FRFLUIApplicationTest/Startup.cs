@@ -16,8 +16,7 @@ namespace FRFLUIApplicationTest
             var services = new ServiceCollection();
             services
            .AddSingleton(ConfigReader.Readconfig())
-           .AddScoped<IDriverFixture, DriverFixture>()
-           .AddScoped<IApplicationHomePage, ApplicationHomePage>();
+           .AddScoped<IDriverFixture, DriverFixture>();
 
             return services;
         }

@@ -4,6 +4,6 @@ namespace FRFLTestFramework.Driver
 {
     public interface IDriverFixture
     {
-        IPage Page { get; }
+        Task<IPage> GetPageAsync();
     }
 }

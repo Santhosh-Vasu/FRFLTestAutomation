@@ -4,7 +4,7 @@ using FRFLTestFramework.Driver;
 using Microsoft.Playwright;
 
 
-namespace FRFLApplicationTest.Pages
+namespace FRFLApplicationTest._pages
 {
    public interface IApplicationHomePage
     {
@@ -26,81 +26,79 @@ namespace FRFLApplicationTest.Pages
 
     public class ApplicationHomePage : IApplicationHomePage
     {
-
-
-        private readonly IDriverFixture _driverFixture;
-        public ApplicationHomePage(IDriverFixture driverFixture)
+        private readonly IPage _page;
+        public ApplicationHomePage(IPage page)
         {
-            _driverFixture = driverFixture;
+            _page = page;
         }
 
-        private ILocator _applyNowBtn => _driverFixture.Page.Locator("text=Apply now");
-        private ILocator _acceptAll => _driverFixture.Page.Locator("text=Accept All");
+        private ILocator _applyNowBtn => _page.Locator("text=Apply now");
+        private ILocator _acceptAll => _page.Locator("text=Accept All");
 
-        private ILocator _acceptAndProceed => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-terms-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div.row.btn-row > div.col-xs-8.col-sm-10 > div > label > input");
-
-
-        private ILocator _appnNext => _driverFixture.Page.Locator("id=next");
-        private ILocator _forenameVisible => _driverFixture.Page.Locator("id=forename");
+        private ILocator _acceptAndProceed => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-terms-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div.row.btn-row > div.col-xs-8.col-sm-10 > div > label > input");
 
 
-        private ILocator _title => _driverFixture.Page.Locator("id=title");
+        private ILocator _appnNext => _page.Locator("id=next");
+        private ILocator _forenameVisible => _page.Locator("id=forename");
 
-        private ILocator _forename => _driverFixture.Page.Locator("id=forename");
 
-        private ILocator _middlename => _driverFixture.Page.Locator("id=middlename");
-        private ILocator _surnmae => _driverFixture.Page.Locator("id=surname");
-        private ILocator _dobDay => _driverFixture.Page.Locator("id=dobDay");
-        private ILocator _dobMonth => _driverFixture.Page.Locator("id=dobMonth");
-        private ILocator _dobYear => _driverFixture.Page.Locator("id=dobYear");
-        private ILocator _maritalStatus => _driverFixture.Page.Locator("id=status");
-        private ILocator _dependants => _driverFixture.Page.Locator("id=dependants");
-        private ILocator _homeTel => _driverFixture.Page.Locator("da-primary-applicant-step #hometel");
-        private ILocator _mobileTel => _driverFixture.Page.Locator("da-primary-applicant-step #mobiletel");
-        private ILocator _email => _driverFixture.Page.Locator("id=email");
-        private ILocator _manualAddressCheck => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-primary-applicant-step > frf-wizard-step > div > div > div.col-sm-8.body > form > da-address > form > div:nth-child(2) > div.col-sm-6.col-sm-offset-1 > div > label > input");
+        private ILocator _title => _page.Locator("id=title");
 
-        private ILocator _flatNum => _driverFixture.Page.Locator("id=flatNumber");
-        private ILocator _buildingName => _driverFixture.Page.Locator("id=buildingName");
-        private ILocator _buildingNum => _driverFixture.Page.Locator("id=buildingNumber");
-        private ILocator _street => _driverFixture.Page.Locator("id=street");
-        private ILocator _town => _driverFixture.Page.Locator("id=town");
-        private ILocator _city => _driverFixture.Page.Locator("id=city");
-        private ILocator _county => _driverFixture.Page.Locator("id=county");
-        private ILocator _postcode => _driverFixture.Page.Locator("id=postcode");
-        private ILocator _timeAtAddressYrs => _driverFixture.Page.Locator("id=timeAtAddressYrs");
-        private ILocator _timeAtAddressMths => _driverFixture.Page.Locator("id=timeAtAddressMths");
-        private ILocator _residency => _driverFixture.Page.Locator("id=residency");
+        private ILocator _forename => _page.Locator("id=forename");
 
-        private ILocator _mainApplicantPageNext => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
-        private ILocator _employmentType => _driverFixture.Page.Locator("id=employmentType");
-        private ILocator _occupation => _driverFixture.Page.Locator("id=occupation");
-        private ILocator _companyName => _driverFixture.Page.Locator("id=companyName");
-        private ILocator _workCity => _driverFixture.Page.Locator("id=city");
-        private ILocator _workTelephone => _driverFixture.Page.Locator("id=employmentTelephone");
-        private ILocator _employmentInJobYr => _driverFixture.Page.Locator("id=employmentTimeSpentInJobYr");
-        private ILocator _employmentInJobMnth => _driverFixture.Page.Locator("id=employmentTimeSpentInJobM");
-        private ILocator _employmentTakeHome => _driverFixture.Page.Locator("id=employmentTakeHomePay");
-        private ILocator _incomeFrequency => _driverFixture.Page.Locator("id=employmentIncomeFrequency");
-        private ILocator _employmentPageNext => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div > button");
-        private ILocator _additionalIncome => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-additional-income-decision-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div > div.col-sm-6 > label:nth-child(2) > input");
-        private ILocator _additionalIncomePageNext => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
-        private ILocator _howDidYouHearAboutUs => _driverFixture.Page.Locator("id=howDidYouHearAboutUs");
-        private ILocator _chosenVehicle => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-additional-info-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div:nth-child(2) > div.col-sm-6.col-sm-offset-1 > label:nth-child(1)");
-        private ILocator _vehicleReg => _driverFixture.Page.Locator("id=vehicleReg");
-        private ILocator _vehicleType => _driverFixture.Page.Locator("id=vehicleType");
-        private ILocator _vehicleManufacturer => _driverFixture.Page.Locator("id=vehicleManufacturer");
-        private ILocator _vehicleMileage => _driverFixture.Page.Locator("id=vehicleMileage");
-        private ILocator _vehiclePrice => _driverFixture.Page.Locator("id=vehiclePrice");
-        private ILocator _cashDeposit => _driverFixture.Page.Locator("id=cashDeposit");
-        private ILocator _partExchangeDeposit => _driverFixture.Page.Locator("id=partExchangeDeposit");
-        private ILocator _additionalInfoNext => _driverFixture.Page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
-        private ILocator _verifyApplyButtonVisible => _driverFixture.Page.Locator("text=Apply!");
-        private ILocator _clickApplyButton => _driverFixture.Page.Locator("text=Apply!");
+        private ILocator _middlename => _page.Locator("id=middlename");
+        private ILocator _surnmae => _page.Locator("id=surname");
+        private ILocator _dobDay => _page.Locator("id=dobDay");
+        private ILocator _dobMonth => _page.Locator("id=dobMonth");
+        private ILocator _dobYear => _page.Locator("id=dobYear");
+        private ILocator _maritalStatus => _page.Locator("id=status");
+        private ILocator _dependants => _page.Locator("id=dependants");
+        private ILocator _homeTel => _page.Locator("da-primary-applicant-step #hometel");
+        private ILocator _mobileTel => _page.Locator("da-primary-applicant-step #mobiletel");
+        private ILocator _email => _page.Locator("id=email");
+        private ILocator _manualAddressCheck => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-primary-applicant-step > frf-wizard-step > div > div > div.col-sm-8.body > form > da-address > form > div:nth-child(2) > div.col-sm-6.col-sm-offset-1 > div > label > input");
 
-        private ILocator _decision => _driverFixture.Page.Locator("da-decision-step #decision");
+        private ILocator _flatNum => _page.Locator("id=flatNumber");
+        private ILocator _buildingName => _page.Locator("id=buildingName");
+        private ILocator _buildingNum => _page.Locator("id=buildingNumber");
+        private ILocator _street => _page.Locator("id=street");
+        private ILocator _town => _page.Locator("id=town");
+        private ILocator _city => _page.Locator("id=city");
+        private ILocator _county => _page.Locator("id=county");
+        private ILocator _postcode => _page.Locator("id=postcode");
+        private ILocator _timeAtAddressYrs => _page.Locator("id=timeAtAddressYrs");
+        private ILocator _timeAtAddressMths => _page.Locator("id=timeAtAddressMths");
+        private ILocator _residency => _page.Locator("id=residency");
 
-        private ILocator _appFinishButton => _driverFixture.Page.Locator("text=Finish");
+        private ILocator _mainApplicant_pageNext => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
+        private ILocator _employmentType => _page.Locator("id=employmentType");
+        private ILocator _occupation => _page.Locator("id=occupation");
+        private ILocator _companyName => _page.Locator("id=companyName");
+        private ILocator _workCity => _page.Locator("id=city");
+        private ILocator _workTelephone => _page.Locator("id=employmentTelephone");
+        private ILocator _employmentInJobYr => _page.Locator("id=employmentTimeSpentInJobYr");
+        private ILocator _employmentInJobMnth => _page.Locator("id=employmentTimeSpentInJobM");
+        private ILocator _employmentTakeHome => _page.Locator("id=employmentTakeHomePay");
+        private ILocator _incomeFrequency => _page.Locator("id=employmentIncomeFrequency");
+        private ILocator _employment_pageNext => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div > button");
+        private ILocator _additionalIncome => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-additional-income-decision-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div > div.col-sm-6 > label:nth-child(2) > input");
+        private ILocator _additionalIncome_pageNext => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
+        private ILocator _howDidYouHearAboutUs => _page.Locator("id=howDidYouHearAboutUs");
+        private ILocator _chosenVehicle => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div:nth-child(1) > da-additional-info-step > frf-wizard-step > div > div > div.col-sm-8.body > form > div:nth-child(2) > div.col-sm-6.col-sm-offset-1 > label:nth-child(1)");
+        private ILocator _vehicleReg => _page.Locator("id=vehicleReg");
+        private ILocator _vehicleType => _page.Locator("id=vehicleType");
+        private ILocator _vehicleManufacturer => _page.Locator("id=vehicleManufacturer");
+        private ILocator _vehicleMileage => _page.Locator("id=vehicleMileage");
+        private ILocator _vehiclePrice => _page.Locator("id=vehiclePrice");
+        private ILocator _cashDeposit => _page.Locator("id=cashDeposit");
+        private ILocator _partExchangeDeposit => _page.Locator("id=partExchangeDeposit");
+        private ILocator _additionalInfoNext => _page.Locator("#consumer-form > frf-wizard > div > div:nth-child(2) > div > div > div > div.row.btn-row > div > div > div > div.pull-right.col-xs-6 > button");
+        private ILocator _verifyApplyButtonVisible => _page.Locator("text=Apply!");
+        private ILocator _clickApplyButton => _page.Locator("text=Apply!");
+
+        private ILocator _decision => _page.Locator("da-decision-step #decision");
+
+        private ILocator _appFinishButton => _page.Locator("text=Finish");
 
 
 
@@ -108,7 +106,7 @@ namespace FRFLApplicationTest.Pages
 
         //public async Task NavigateToWebsite()
         //{
-        //    await Page.GotoAsync(_testsettings.ApplicationUrlUat);
+        //    await _page.GotoAsync(_testsettings.ApplicationUrlUat);
 
         //}
 
@@ -162,7 +160,7 @@ namespace FRFLApplicationTest.Pages
 
         public async Task FillEmploymentDetails(string employmentType, string occupation, string companyName, string workcity, string employmentTelephone, string employmentTimeSpentInJobYr, string employmentTimeSpentInJobM, string employmentTakeHomePay, string employmentIncomeFrequency)
         {
-            await _mainApplicantPageNext.ClickAsync();
+            await _mainApplicant_pageNext.ClickAsync();
             await _employmentType.SelectOptionAsync(employmentType);
             await _occupation.FillAsync(occupation);
             await _companyName.FillAsync(companyName);
@@ -178,9 +176,9 @@ namespace FRFLApplicationTest.Pages
 
         public async Task FillAdditionalInfo(string howDidYouHearAboutUs)
         {
-            await _employmentPageNext.ClickAsync();
+            await _employment_pageNext.ClickAsync();
             await _additionalIncome.ClickAsync();
-            await _additionalIncomePageNext.ClickAsync();
+            await _additionalIncome_pageNext.ClickAsync();
             await _howDidYouHearAboutUs.SelectOptionAsync(howDidYouHearAboutUs);
 
         }
@@ -203,7 +201,7 @@ namespace FRFLApplicationTest.Pages
         {
 
 
-            //await _page.WaitForResponseAsync(x => x.Url.EndsWith("/portalapi/application/v1/multistep") && x.Status == 200);
+            //await __page.WaitForResponseAsync(x => x.Url.EndsWith("/portalapi/application/v1/multistep") && x.Status == 200);
             await _clickApplyButton.ClickAsync();
 
         }
